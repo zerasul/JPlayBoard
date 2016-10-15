@@ -1,19 +1,33 @@
 package es.nanoplayboard.jplayboard;
 
-import es.nanoplayboard.jplayboard.serial.ArduinoSerialAdapter;
-import es.nanoplayboard.jplayboard.serial.SerialAdapter;
+
+import es.nanoplayboard.jplayboard.adapter.Adapter;
+import es.nanoplayboard.jplayboard.adapter.NanoPlayBoardAdapter;
+import org.firmata4j.IODeviceEventListener;
+
+import java.io.IOException;
 
 /**
  * Created by victor on 15/10/16.
  */
 public class JPlayBoard {
 
-    SerialAdapter sadapter;
+    Adapter playBoardAdapter;
 
     public JPlayBoard(String port){
-        sadapter=new ArduinoSerialAdapter(port);
-        sadapter.connect();
+        playBoardAdapter= new NanoPlayBoardAdapter(port);
     }
 
+    public JPlayBoard(Adapter adapter){
+        playBoardAdapter=adapter;
+    }
+
+    public void setListenerAdapter(IODeviceEventListener listener){
+        playBoardAdapter.
+    }
+
+    public void disconnect()throws IOException{
+        playBoardAdapter.disconnect();
+    }
 
 }
