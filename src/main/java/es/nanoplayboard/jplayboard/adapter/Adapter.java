@@ -1,5 +1,7 @@
 package es.nanoplayboard.jplayboard.adapter;
 
+import es.nanoplayboard.jplayboard.adapter.listener.PlayBoardPinEventListener;
+
 import java.io.IOException;
 
 /**
@@ -9,5 +11,5 @@ public interface Adapter {
 
     void connect() throws IOException, InterruptedException;
     void disconnect()throws IOException;
-
+    void setOnPlayBoardEventListener(final PlayBoardPinEventListener listener);
 }

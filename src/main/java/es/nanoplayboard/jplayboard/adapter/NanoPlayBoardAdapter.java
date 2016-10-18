@@ -1,6 +1,8 @@
 package es.nanoplayboard.jplayboard.adapter;
 
-import es.nanoplayboard.jplayboard.adapter.listener.PlayBoardEventListener;
+
+import es.nanoplayboard.jplayboard.adapter.listener.PlayBoardPinEvent;
+import es.nanoplayboard.jplayboard.adapter.listener.PlayBoardPinEventListener;
 import es.nanoplayboard.jplayboard.exception.NotConnectedException;
 import org.firmata4j.IODevice;
 import org.firmata4j.IODeviceEventListener;
@@ -14,12 +16,14 @@ import java.io.IOException;
  */
 public class NanoPlayBoardAdapter implements Adapter {
 
-    IODevice device;
-    boolean initializated=false;
+    private IODevice device;
+    private PlayBoardPinEventListener listener;
+    private boolean initializated=false;
 
     public NanoPlayBoardAdapter(String port){
         device = new FirmataDevice(port);
     }
+
 
     @Override
     public void connect()throws IOException, InterruptedException {
@@ -35,8 +39,9 @@ public class NanoPlayBoardAdapter implements Adapter {
         device.stop();
     }
 
-
-    public void setOnPlayBoardEventListener(PlayBoardEventListener listener){
+    @Override
+    public void setOnPlayBoardEventListener(final PlayBoardPinEventListener listener){
+        this.listener= listener;
         device.addEventListener(new IODeviceEventListener() {
             @Override
             public void onStart(IOEvent event) {
@@ -50,7 +55,10 @@ public class NanoPlayBoardAdapter implements Adapter {
 
             @Override
             public void onPinChange(IOEvent event) {
-
+                PlayBoardPinEvent playevent = new PlayBoardPinEvent();
+                playevent.setPin(event.getPin().getIndex());
+                playevent.setValue(Long.valueOf(event.getPin().getValue()).intValue());
+                NanoPlayBoardAdapter.this.listener.onEvent(playevent);
 
             }
         });
