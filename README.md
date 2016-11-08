@@ -8,6 +8,14 @@ you can use the NanoPlayBoard with java. Only you need to connect the board via 
 
 This library, is tested in Windows, Mac and Linux also with Raspberry Pi ARM Linux Distributions.
 
+## Compilation
+
+Use Gradle for compile this library and get the assemble
+
+```bash
+./gradlew assemble # Unix Based Systems
+gradlew.bat assemble # Windows based Systems
+```
 ## Getting Started
 
 This Library, needs one Skecth to be upload to the board. You need the Arduino Software to upload to the NanoPlayboard.
