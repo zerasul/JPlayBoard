@@ -50,12 +50,7 @@ public class JPlayBoard {
     public void disconnect()throws IOException{
         playBoardAdapter.disconnect();
     }
-    public AnalogDevice getPotentiometer(){
-        return this.pontentiometer;
-    }
-    public AnalogDevice getLdr(){
-        return this.ldr;
-    }
+
 
     public void setOnStateChangeListener(StateChangeListener listener){
         this.playBoardAdapter.setonStateChangeListener(listener);
