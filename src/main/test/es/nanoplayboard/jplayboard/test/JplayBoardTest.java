@@ -31,7 +31,9 @@ public class JplayBoardTest{
         StateChangeListener listener = new StateChangeListener() {
             @Override
             public void onStateChange(State state) {
+
                 Assert.assertEquals(255,state.getLdr().intValue());
+                Assert.assertEquals(512,state.getPotentiometer().intValue());
             }
         };
         jplayboard.setOnStateChangeListener(listener);

@@ -29,8 +29,8 @@ public class MockAdapter implements Adapter {
 
                 while(initiated){
                     if(listener!=null) {
-                        State state = new State();
-                        state.setLdr(255);
+                       String str= "255\t512\ttrue\tfalse\ttrue\tfalse\t48.0\t5.00";
+                        State state = State.generateState(str);
                         listener.onStateChange(state);
                     }
                     try {

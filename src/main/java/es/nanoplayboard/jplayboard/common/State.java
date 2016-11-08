@@ -28,6 +28,8 @@ public class State {
         String[] sdata= data.split("\t");
         State state = new State();
         state.setLdr(Integer.parseInt(sdata[0]));
+        state.setPotentiometer(Integer.parseInt(sdata[1]));
+
         return state;
     }
 }
