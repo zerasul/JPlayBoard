@@ -15,7 +15,7 @@ public class AnalogDevice {
 
 
     public AnalogDevice(Adapter adapter){
-        this.pin=pin;
+      
         this.adapter=adapter;
         this.listener=new AnalogListener() {
             @Override

@@ -1,6 +1,5 @@
 package es.nanoplayboard.jplayboard;
 
-import es.nanoplayboard.jplayboard.adapter.listener.AnalogListener;
 import es.nanoplayboard.jplayboard.adapter.listener.StateChangeListener;
 import es.nanoplayboard.jplayboard.common.State;
 

@@ -1,28 +1,21 @@
 package es.nanoplayboard.jplayboard.adapter;
 
 
-import com.fazecast.jSerialComm.SerialPort;
-import com.fazecast.jSerialComm.SerialPortDataListener;
-import com.fazecast.jSerialComm.SerialPortEvent;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.sun.security.jgss.GSSUtil;
-import es.nanoplayboard.jplayboard.adapter.listener.PlayBoardPinEvent;
-import es.nanoplayboard.jplayboard.adapter.listener.PlayBoardPinEventListener;
-import es.nanoplayboard.jplayboard.adapter.listener.StateChangeListener;
-import es.nanoplayboard.jplayboard.common.Command;
-import es.nanoplayboard.jplayboard.common.Init;
-import es.nanoplayboard.jplayboard.common.State;
-import es.nanoplayboard.jplayboard.exception.NotConnectedException;
-import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.core.util.ExecutorServices;
-
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.nio.ByteBuffer;
+
+
+
+
+import com.fazecast.jSerialComm.SerialPort;
+import com.google.gson.Gson;
+
+import es.nanoplayboard.jplayboard.adapter.listener.StateChangeListener;
+import es.nanoplayboard.jplayboard.common.Command;
+import es.nanoplayboard.jplayboard.common.Init;
+import es.nanoplayboard.jplayboard.exception.NotConnectedException;
+import es.nanoplayboard.jplayboard.log.Logger;
 
 /**
  * Created by victor on 15/10/16.
@@ -36,7 +29,7 @@ public class NanoPlayBoardAdapter implements Adapter {
     private OutputStream ostream;
     private InputStream istream;
     private Thread thread;
-    private Logger logger = es.nanoplayboard.jplayboard.log.Logger.getLogger(getClass());
+    private Logger logger = es.nanoplayboard.jplayboard.log.Logger.getInstance(getClass());
     public NanoPlayBoardAdapter(String port){
         commPort=SerialPort.getCommPort(port);
     }

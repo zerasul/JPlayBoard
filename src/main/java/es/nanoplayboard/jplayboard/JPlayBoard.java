@@ -1,17 +1,22 @@
 package es.nanoplayboard.jplayboard;
 
 
+import java.io.IOException;
+
+
+
+
 import es.nanoplayboard.jplayboard.adapter.Adapter;
 import es.nanoplayboard.jplayboard.adapter.NanoPlayBoardAdapter;
-import es.nanoplayboard.jplayboard.adapter.listener.PlayBoardPinEventListener;
 import es.nanoplayboard.jplayboard.adapter.listener.StateChangeListener;
-import es.nanoplayboard.jplayboard.common.*;
+import es.nanoplayboard.jplayboard.common.Buzzer;
+import es.nanoplayboard.jplayboard.common.Command;
+import es.nanoplayboard.jplayboard.common.LedRgb;
+import es.nanoplayboard.jplayboard.common.Matrix;
+import es.nanoplayboard.jplayboard.common.StopBuzzer;
 import es.nanoplayboard.jplayboard.components.AnalogDevice;
 import es.nanoplayboard.jplayboard.exception.NotConnectedException;
-import org.apache.logging.log4j.Logger;
-
-import java.io.IOException;
-import java.io.InterruptedIOException;
+import es.nanoplayboard.jplayboard.log.Logger;
 
 /**
  * Created by victor on 15/10/16.
@@ -22,7 +27,7 @@ public class JPlayBoard {
     private AnalogDevice pontentiometer;
     private AnalogDevice ldr;
 
-    private Logger logger = es.nanoplayboard.jplayboard.log.Logger.getLogger(getClass());
+    private Logger logger = es.nanoplayboard.jplayboard.log.Logger.getInstance(getClass());
 
     public JPlayBoard(String port){
         this(new NanoPlayBoardAdapter(port));
