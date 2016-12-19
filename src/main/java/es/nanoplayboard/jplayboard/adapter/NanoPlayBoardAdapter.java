@@ -18,18 +18,40 @@ import es.nanoplayboard.jplayboard.exception.NotConnectedException;
 import es.nanoplayboard.jplayboard.log.Logger;
 
 /**
+ * Main adapter for communicate with the NanoPlayBoard.
  * Created by victor on 15/10/16.
+ * @version 0.0.1
+ * @since 0.0.1
  */
 public class NanoPlayBoardAdapter implements Adapter {
 
-
+	/**
+	 * State Change Listener. The listener that get all the sensors changes.
+	 */
     private StateChangeListener listener;
+    /**
+     * Initialization Variable.
+     */
     private boolean initializated=false;
+    /**
+     * Serial Port.
+     */
     private SerialPort commPort;
+    /**
+     * OutputStream For Communication
+     */
     private OutputStream ostream;
+    /**
+     * InputStream For Communication
+     */
     private InputStream istream;
     private Thread thread;
     private Logger logger = es.nanoplayboard.jplayboard.log.Logger.getInstance(getClass());
+    /**
+     * Constructor.
+     * @param port Port Name 
+     * 
+     */
     public NanoPlayBoardAdapter(String port){
         commPort=SerialPort.getCommPort(port);
     }
