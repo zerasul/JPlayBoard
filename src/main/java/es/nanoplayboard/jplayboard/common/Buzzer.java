@@ -8,7 +8,7 @@ import com.google.gson.JsonObject;
 public class Buzzer extends Command {
     int val;
     public Buzzer(int val){
-        super("buzzer");
+        super(CommandTypes.BUZZER.ordinal());
         this.val=val;
     }
     @Override
@@ -20,4 +20,16 @@ public class Buzzer extends Command {
         json.add("params",params);
         return json.toString();
     }
+	@Override
+	public byte[] getAT() {
+		StringBuffer strbuffer = new StringBuffer("AT");
+		strbuffer.append(Integer.toString(getType()));
+		String strval= Integer.toString(val);
+		strbuffer.append(strval.length());
+		strbuffer.append(strval);
+		String checksum=generatechecksum(strval);
+		strbuffer.append(checksum);
+		strbuffer.append("\r\n");
+		return strbuffer.toString().getBytes();
+	}
 }

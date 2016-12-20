@@ -20,7 +20,7 @@ import es.nanoplayboard.jplayboard.log.Logger;
 /**
  * Main adapter for communicate with the NanoPlayBoard.
  * Created by victor on 15/10/16.
- * @version 0.0.1
+ * @version 0.0.2
  * @since 0.0.1
  */
 public class NanoPlayBoardAdapter implements Adapter {
