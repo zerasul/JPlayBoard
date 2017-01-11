@@ -72,7 +72,7 @@ public class NanoPlayBoardAdapter implements Adapter {
         thread=new Thread(){
             public void run(){
                 setName("StateThread");
-                Gson gson = new Gson();
+              
                 while(true){
                     try {
                             if(commPort.isOpen() && istream.available()>0) {
@@ -126,9 +126,9 @@ public class NanoPlayBoardAdapter implements Adapter {
     @Override
     public void sendCommand(Command command) throws IOException,NotConnectedException {
         if(!initializated)throw new NotConnectedException();
-        String json = command.getJson()+"\r\n";
+       
         if(ostream!=null)
-            ostream.write(json.getBytes());
+            ostream.write(command.getAT());
         try {
             Thread.sleep(600);
         }catch (Exception e){

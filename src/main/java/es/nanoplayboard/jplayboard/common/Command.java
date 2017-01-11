@@ -30,7 +30,7 @@ public abstract class Command {
         this.type = type;
     }
 
-    public abstract String getJson();
+    
 
     public abstract byte[] getAT();
     

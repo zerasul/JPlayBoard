@@ -1,6 +1,5 @@
 package es.nanoplayboard.jplayboard.common;
 
-import com.google.gson.JsonObject;
 
 /**
  * Created by victor on 26/10/16.
@@ -8,13 +7,18 @@ import com.google.gson.JsonObject;
 public class Init extends  Command {
 
     public Init(){
-        super("init");
-    }
-    @Override
-    public String getJson() {
-        JsonObject json= new JsonObject();
-        json.addProperty("type",super.getType());
-        return json.toString();
+        super(CommandTypes.INIT.ordinal());
     }
 
+	@Override
+	public byte[] getAT() {
+		StringBuffer strbuffer = new StringBuffer("AT");
+		strbuffer.append(Integer.toString(getType()));
+		strbuffer.append("0");//no parameters
+		strbuffer.append(generatechecksum("0"));
+		strbuffer.append("\r\n");
+		return strbuffer.toString().getBytes();
+	}
+   
+    
 }

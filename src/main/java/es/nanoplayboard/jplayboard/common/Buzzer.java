@@ -11,16 +11,8 @@ public class Buzzer extends Command {
         super(CommandTypes.BUZZER.ordinal());
         this.val=val;
     }
+   
     @Override
-    public String getJson() {
-        JsonObject json= new JsonObject();
-        json.addProperty("type",super.getType());
-        JsonObject params = new JsonObject();
-        params.addProperty("val",this.val);
-        json.add("params",params);
-        return json.toString();
-    }
-	@Override
 	public byte[] getAT() {
 		StringBuffer strbuffer = new StringBuffer("AT");
 		strbuffer.append(Integer.toString(getType()));

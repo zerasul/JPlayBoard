@@ -8,14 +8,17 @@ import com.google.gson.JsonObject;
 public class StopBuzzer extends Command{
 
     public StopBuzzer(){
-        super("stopbuzzer");
+        super(CommandTypes.STOPBUZZER.ordinal());
     }
-    @Override
-    public String getJson() {
-        JsonObject json= new JsonObject();
-        json.addProperty("type",super.getType());
 
-
-        return json.toString();
-    }
+	@Override
+	public byte[] getAT() {
+		StringBuffer strbuffer = new StringBuffer("AT");
+		strbuffer.append(Integer.toString(getType()));
+		strbuffer.append("0");//no parameters
+		strbuffer.append(generatechecksum("0"));
+		strbuffer.append("\r\n");
+		return strbuffer.toString().getBytes();
+	}
+   
 }

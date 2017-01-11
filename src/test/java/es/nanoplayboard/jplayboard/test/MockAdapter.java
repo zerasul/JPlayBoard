@@ -1,12 +1,15 @@
 package es.nanoplayboard.jplayboard.test;
 
 import com.google.gson.Gson;
+
 import es.nanoplayboard.jplayboard.adapter.Adapter;
 import es.nanoplayboard.jplayboard.adapter.listener.StateChangeListener;
 import es.nanoplayboard.jplayboard.common.Command;
 import es.nanoplayboard.jplayboard.common.Init;
 import es.nanoplayboard.jplayboard.common.State;
 import es.nanoplayboard.jplayboard.exception.NotConnectedException;
+import es.nanoplayboard.jplayboard.log.Logger;
+
 import org.junit.Assert;
 
 import java.io.IOException;
@@ -56,9 +59,8 @@ public class MockAdapter implements Adapter {
 
     @Override
     public void sendCommand(Command command) throws IOException, NotConnectedException {
-            Gson gson = new Gson();
-        try {
-            gson.fromJson(command.getJson(),Object.class);
+         try {
+            Logger.getInstance(MockAdapter.class).info(new String(command.getAT()));
         }catch (Exception e){
             Assert.fail(e.getMessage());
         }

@@ -11,8 +11,8 @@ public class LedRgb extends Command {
     private int green;
     private int blue;
 
-    public LedRgb(String type) {
-        super(type);
+    public LedRgb() {
+        super(CommandTypes.LEDRGB.ordinal());
     }
 
     public int getRed() {
@@ -40,21 +40,24 @@ public class LedRgb extends Command {
     }
 
     public LedRgb(int red, int green, int blue){
-        super("rgb");
+        this();
         this.red=red;
         this.green=green;
         this.blue=blue;
 
     }
-    @Override
-    public String getJson() {
-        JsonObject json= new JsonObject();
-        json.addProperty("type",super.getType());
-        JsonObject params = new JsonObject();
-        params.addProperty("r",getRed());
-        params.addProperty("g",getGreen());
-        params.addProperty("b",getBlue());
-        json.add("params",params);
-        return json.toString();
-    }
+
+	@Override
+	public byte[] getAT() {
+		StringBuffer strbuffer = new StringBuffer("AT");
+		strbuffer.append(Integer.toString(getType()));
+		String strval= Integer.toString(this.red)+"\t"+Integer.toString(this.green)+"\t"+Integer.toString(this.blue);
+		strbuffer.append(strval.length());
+		strbuffer.append(strval);
+		String checksum=generatechecksum(strval);
+		strbuffer.append(checksum);
+		strbuffer.append("\r\n");
+		return strbuffer.toString().getBytes();
+	}
+   
 }
